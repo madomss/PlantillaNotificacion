@@ -2293,11 +2293,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Manuel\\Desktop\\C#\\PlantillaNotificacion\\PlantillaNotificacion\\EjemploPlantilla.csproj",
+      "projectUniqueName": "C:\\Users\\Manuel\\Source\\Repos\\PlantillaNotificacion\\PlantillaNotificacion\\EjemploPlantilla.csproj",
       "projectName": "EjemploPlantilla",
-      "projectPath": "C:\\Users\\Manuel\\Desktop\\C#\\PlantillaNotificacion\\PlantillaNotificacion\\EjemploPlantilla.csproj",
+      "projectPath": "C:\\Users\\Manuel\\Source\\Repos\\PlantillaNotificacion\\PlantillaNotificacion\\EjemploPlantilla.csproj",
       "packagesPath": "C:\\Users\\Manuel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Manuel\\Desktop\\C#\\PlantillaNotificacion\\PlantillaNotificacion\\obj\\",
+      "outputPath": "C:\\Users\\Manuel\\Source\\Repos\\PlantillaNotificacion\\PlantillaNotificacion\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

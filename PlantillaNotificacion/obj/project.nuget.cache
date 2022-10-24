@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uyQ6i1bBKSaXT2V3VqtBXzbLyrO3gGl31ytZJlW70ld5ZM3SdQ4EEw81aUjSG5pW25TL6lpZ/KLzF7Qnj3OBTw==",
+  "dgSpecHash": "Lx27sMQgz335sBZ6YRPvDhNKqAw1OyybNc8qIT1dyEWpF0bDwuhQQtkAYDTS36x5AyOva0qa3/6IWtMKTxZ+mA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Manuel\\Desktop\\C#\\PlantillaNotificacion\\PlantillaNotificacion\\EjemploPlantilla.csproj",
+  "projectFilePath": "C:\\Users\\Manuel\\Source\\Repos\\PlantillaNotificacion\\PlantillaNotificacion\\EjemploPlantilla.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Manuel\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Manuel\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

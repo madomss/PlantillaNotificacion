@@ -104,6 +104,10 @@ namespace EjemploPlantilla.Controllers
         {
             try
             {
+                if (string.IsNullOrEmpty(plantillaDTO.Titulo) || string.IsNullOrEmpty(plantillaDTO.Descripcion))
+                {
+                    return BadRequest(new { message = $"El titulo y la descripción son campos requeridos." });
+                }
                 var plantillaRgto = _mapper.Map<PlantillaNotificacion>(plantillaDTO);
                 await _plantilla.ActualizarPlantilla(plantillaRgto);
                 return NoContent();
