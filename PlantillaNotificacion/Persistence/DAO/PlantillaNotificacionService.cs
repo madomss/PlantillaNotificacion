@@ -53,37 +53,48 @@ namespace EjemploPlantilla.Persistence.DAO
         }
 
         //POST: Servicio para crear plantilla notificacion
-        public async Task<PlantillaNotificacion> RegistroPlantilla(PlantillaNotificacion plantilla)
+        public async Task<Boolean> RegistroPlantilla(PlantillaNotificacion plantilla)
         {
-            _plantillaContext.PlantillaNotificacion.Add(plantilla);
-            await _plantillaContext.SaveChangesAsync();
-            return plantilla;
+            try
+            {
+                _plantillaContext.PlantillaNotificacion.Add(plantilla);
+                await _plantillaContext.SaveChangesAsync();
+                return true;
+            }catch(Exception ex)
+            {
+                throw new ExceptionsControl("No se pudo realizar el registro",ex);
+            }
         }
 
         //PUT: Servicio para crear plantilla notificacion
-        public async Task ActualizarPlantilla(PlantillaNotificacion plantilla)
+        public async Task<Boolean> ActualizarPlantilla(PlantillaNotificacion plantilla)
         {
-
             try
             {
                 _plantillaContext.PlantillaNotificacion.Update(plantilla);
-                var data = await _plantillaContext.SaveChangesAsync();
+                await _plantillaContext.SaveChangesAsync();
+                return true;
             }catch(Exception ex)
             {
                 var mensaje = "No se pueden registrar campos vacios en el título o en la descripcion";
-                throw new ExceptionsControl(mensaje);
+                throw new ExceptionsControl(mensaje,ex);
             }
         }
 
         //DELETE: Servicio para eliminar plantilla notificacion
-        public async Task EliminarPlantilla(Guid id)
+        public async Task<Boolean> EliminarPlantilla(Guid id)
         {
-            var plantillaExist = ConsultarPlantillaGUID(id);
-
-            if (plantillaExist is not null)
+            try
             {
+                var plantillaExist = ConsultarPlantillaGUID(id);
                 _plantillaContext.PlantillaNotificacion.Remove(plantillaExist);
                 await _plantillaContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                var mensaje = "No se pueden registrar campos vacios en el título o en la descripcion";
+                throw new ExceptionsControl(mensaje, ex);
             }
         }
 

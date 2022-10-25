@@ -10,8 +10,8 @@ namespace EjemploPlantilla.Persistence.DAO
         public PlantillaNotificacion ConsultarPlantillaGUID(Guid id);
         public List<PlantillaNotificacion> ConsultarPlantillaTitulo(string titulo);
         //public List<PlantillaNotificacion> ConsultarPlantillaBody(PlantillaNotificacionDTO plantilla);
-        public Task<PlantillaNotificacion> RegistroPlantilla(PlantillaNotificacion newPlantilla);
-        public Task ActualizarPlantilla(PlantillaNotificacion plantilla);
-        public Task EliminarPlantilla(Guid id);
+        public Task<Boolean> RegistroPlantilla(PlantillaNotificacion newPlantilla);
+        public Task<Boolean> ActualizarPlantilla(PlantillaNotificacion plantilla);
+        public Task<Boolean> EliminarPlantilla(Guid id);
     }
 }

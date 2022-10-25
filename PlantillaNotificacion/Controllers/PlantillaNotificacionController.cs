@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EjemploPlantilla.DTO;
+using EjemploPlantilla.Exceptions;
 using EjemploPlantilla.Mapper;
 using EjemploPlantilla.Persistence.DAO;
 using EjemploPlantilla.Persistence.Database;
@@ -76,7 +77,7 @@ namespace EjemploPlantilla.Controllers
         //POST: Controlador para crear plantilla notificacion
         [HttpPost]
         [Route("Registro/")]
-        public async Task<IActionResult> CrearPlantillaCtrl(PlantillaNotificacionDTOCreate plantillaDTO)
+        public async Task<Boolean> CrearPlantillaCtrl(PlantillaNotificacionDTOCreate plantillaDTO)
         {
             try
             {
@@ -88,51 +89,51 @@ namespace EjemploPlantilla.Controllers
                     TipoEstadoId = plantillaDTO.TipoEstadoId
                 };
                 var plantilla = await _plantilla.RegistroPlantilla(a);
-                var plantillaRgtoDTO = _mapper.Map<PlantillaNotificacionDTOCreate>(plantilla);
-                return new JsonResult(plantillaRgtoDTO);
+                return plantilla;
             }
             catch (Exception ex)
             {
-                throw ex.InnerException!;
+                throw new ExceptionsControl("No se pudo realizar el registro", ex);
             }
         }
 
         //PUT: Controlador para modificar plantilla notificacion
         [HttpPut]
         [Route("Actualizar/(\"{id}\")")]
-        public async Task<IActionResult> ActualizarPlantillaCtrl(PlantillaNotificacionUpdateDTO plantillaDTO)
+        public async Task<Boolean> ActualizarPlantillaCtrl(PlantillaNotificacionUpdateDTO plantillaDTO)
         {
             try
             {
-                if (string.IsNullOrEmpty(plantillaDTO.Titulo) || string.IsNullOrEmpty(plantillaDTO.Descripcion))
-                {
-                    return BadRequest(new { message = $"El titulo y la descripción son campos requeridos." });
-                }
+                //if (string.IsNullOrEmpty(plantillaDTO.Titulo) || string.IsNullOrEmpty(plantillaDTO.Descripcion))
+                //{
+                //    return BadRequest(new { message = $"El titulo y la descripción son campos requeridos." });
+                //}
                 var plantillaRgto = _mapper.Map<PlantillaNotificacion>(plantillaDTO);
-                await _plantilla.ActualizarPlantilla(plantillaRgto);
-                return NoContent();
+                var plantilla = await _plantilla.ActualizarPlantilla(plantillaRgto);
+                return plantilla;
             }catch(Exception ex)
             {
-                throw ex.InnerException!;
+                var mensaje = "No se pueden registrar campos vacios en el título o en la descripcion";
+                throw new ExceptionsControl(mensaje,ex);
             }
         }
 
         //DELETE: Controlador para eliminar plantilla notificacion
         [HttpDelete]
         [Route("Eliminar/(\"{id}\")")]
-        public async Task<IActionResult> EliminarPlantillaCtrl(Guid id)
+        public async Task<Boolean> EliminarPlantillaCtrl(Guid id)
         {
-            var plantillaDelete = _plantilla.ConsultarPlantillaGUID(id);
-
-            if (plantillaDelete is not null)
+            try
             {
+                var plantillaDelete = _plantilla.ConsultarPlantillaGUID(id);
                 await _plantilla.EliminarPlantilla(id);
-                return Ok();
-            }
-            else
+                return true;
+            }catch (Exception ex)
             {
-                return NotFound();
+                var mensaje = "No se puede eliminar la plantilla notificación";
+                throw new ExceptionsControl(mensaje,ex);
             }
+
         }
 
         //[HttpGet]
